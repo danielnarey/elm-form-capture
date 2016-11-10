@@ -4,10 +4,12 @@
     "repository": "https://github.com/danielnarey/elm-form-capture.git",
     "license": "BSD2",
     "source-directories": [
-        "./src"
+        "./src",
+        "./src/FormCapture"
     ],
     "exposed-modules": [
-      "FormCapture"
+      "FormCapture",
+      "FormCapture.Readers"
     ],
     "dependencies": {
         "elm-lang/core": "4.0.5 <= v < 5.0.0",
