@@ -4,14 +4,12 @@ import FormCapture.Readers as Readers
 import Html exposing (Html)
 import Html.Attributes as Attr
 import Html.Events as Events
-import Html.App as App
 import Json.Decode as Json
 import List
-import String
 
 
 main =
-  App.beginnerProgram
+  Html.beginnerProgram
     { model = userInput
     , view = view
     , update = update
@@ -93,7 +91,7 @@ view userInput =
     formElement (idString, inputKey, labelText) =
       [ Html.label [] [ Html.text labelText ]
       , Html.br [] []
-      , Html.input [ Attr.type' "text", Attr.id idString ] []
+      , Html.input [ Attr.type_ "text", Attr.id idString ] []
       ]
         |> Html.div []
         |> Capture.elementFromHtml (idString, inputKey)

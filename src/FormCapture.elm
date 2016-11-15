@@ -46,7 +46,6 @@ import Html exposing (Html)
 import Html.Events as Events
 import Json.Decode as Json exposing (Decoder)
 import Dict exposing (Dict)
-import String
 
 
 -- INPUT REPRESENTATION
@@ -295,7 +294,7 @@ generateFormDecoder elementList =
         Just nextElement ->
           nextElement
             |> constructElementDecoder
-            |> Json.object2 (|::) decoderList
+            |> Json.map2 (|::) decoderList
             |> generateDecoderList (elementList ||> List.drop 1)
 
         Nothing ->

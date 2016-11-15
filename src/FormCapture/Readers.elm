@@ -131,7 +131,7 @@ toJson : FormInput a -> Json.Value
 toJson formInput =
   formInput
     |> Dict.toList
-    .|> (\(k, v) -> (k, v ||> toJsonValue != Json.Encode.null))
+    .|> Tuple.mapSecond (\v -> v ||> toJsonValue != Json.Encode.null)
     |> Json.Encode.object
 
 
