@@ -3142,15 +3142,14 @@ var _elm_lang$core$Platform$Task = {ctor: 'Task'};
 var _elm_lang$core$Platform$ProcessId = {ctor: 'ProcessId'};
 var _elm_lang$core$Platform$Router = {ctor: 'Router'};
 var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
-_danielnarey$elm_toolkit$Toolkit_Operators_ops['@@@|>'] = F2(
-	function (_p0, f) {
-		var _p1 = _p0;
-		return A3(f, _p1._0, _p1._1, _p1._2);
+_danielnarey$elm_toolkit$Toolkit_Operators_ops['!+>'] = F2(
+	function (firstResult, nextFunction) {
+		return A2(_elm_lang$core$Result$andThen, nextFunction, firstResult);
 	});
 var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
-_danielnarey$elm_toolkit$Toolkit_Operators_ops['@@|>'] = F2(
-	function (params, f) {
-		return A2(_elm_lang$core$Basics$uncurry, f, params);
+_danielnarey$elm_toolkit$Toolkit_Operators_ops['?+>'] = F2(
+	function (firstResult, nextFunction) {
+		return A2(_elm_lang$core$Maybe$andThen, nextFunction, firstResult);
 	});
 var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
 _danielnarey$elm_toolkit$Toolkit_Operators_ops['!|>'] = F2(
@@ -3173,6 +3172,21 @@ _danielnarey$elm_toolkit$Toolkit_Operators_ops['?='] = F2(
 		return A2(_elm_lang$core$Maybe$withDefault, defaultValue, maybeValue);
 	});
 var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
+_danielnarey$elm_toolkit$Toolkit_Operators_ops['@@|>'] = F2(
+	function (params, f) {
+		return A2(_elm_lang$core$Basics$uncurry, f, params);
+	});
+var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
+_danielnarey$elm_toolkit$Toolkit_Operators_ops['..|>'] = F2(
+	function (_p0, f) {
+		var _p1 = _p0;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p1._0),
+			_1: f(_p1._1)
+		};
+	});
+var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
 _danielnarey$elm_toolkit$Toolkit_Operators_ops[':|>'] = F2(
 	function (a, f) {
 		return f(
@@ -3191,19 +3205,6 @@ var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$To
 _danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'] = F2(
 	function (a, f) {
 		return f(a);
-	});
-var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
-_danielnarey$elm_toolkit$Toolkit_Operators_ops[':+:'] = F2(
-	function (a1, a2) {
-		return {
-			ctor: '::',
-			_0: a1,
-			_1: {
-				ctor: '::',
-				_0: a2,
-				_1: {ctor: '[]'}
-			}
-		};
 	});
 var _danielnarey$elm_toolkit$Toolkit_Operators_ops = _danielnarey$elm_toolkit$Toolkit_Operators_ops || {};
 _danielnarey$elm_toolkit$Toolkit_Operators_ops['|::'] = F2(
@@ -3326,71 +3327,65 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$curry3 = F4(
 		return f(
 			{ctor: '_Tuple3', _0: a, _1: b, _2: c});
 	});
-var _danielnarey$elm_toolkit$Toolkit_Helpers$fourth4 = function (_p18) {
-	var _p19 = _p18;
-	return _p19._3;
-};
-var _danielnarey$elm_toolkit$Toolkit_Helpers$third4 = function (_p20) {
-	var _p21 = _p20;
-	return _p21._2;
-};
-var _danielnarey$elm_toolkit$Toolkit_Helpers$second4 = function (_p22) {
-	var _p23 = _p22;
-	return _p23._1;
-};
-var _danielnarey$elm_toolkit$Toolkit_Helpers$first4 = function (_p24) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$map4Tuple = F2(
+	function (f, _p18) {
+		var _p19 = _p18;
+		return {
+			ctor: '_Tuple4',
+			_0: f(_p19._0),
+			_1: f(_p19._1),
+			_2: f(_p19._2),
+			_3: f(_p19._3)
+		};
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$map3Tuple = F2(
+	function (f, _p20) {
+		var _p21 = _p20;
+		return {
+			ctor: '_Tuple3',
+			_0: f(_p21._0),
+			_1: f(_p21._1),
+			_2: f(_p21._2)
+		};
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$map2Tuple = F2(
+	function (f, _p22) {
+		var _p23 = _p22;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p23._0),
+			_1: f(_p23._1)
+		};
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$fourth4 = function (_p24) {
 	var _p25 = _p24;
-	return _p25._0;
+	return _p25._3;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$third3 = function (_p26) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$third4 = function (_p26) {
 	var _p27 = _p26;
 	return _p27._2;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$second3 = function (_p28) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$second4 = function (_p28) {
 	var _p29 = _p28;
 	return _p29._1;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$first3 = function (_p30) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$first4 = function (_p30) {
 	var _p31 = _p30;
 	return _p31._0;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$zip4 = function (_p32) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$third3 = function (_p32) {
 	var _p33 = _p32;
-	return A5(
-		_elm_lang$core$List$map4,
-		F4(
-			function (a, b, c, d) {
-				return {ctor: '_Tuple4', _0: a, _1: b, _2: c, _3: d};
-			}),
-		_p33._0,
-		_p33._1,
-		_p33._2,
-		_p33._3);
+	return _p33._2;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$zip3 = function (_p34) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$second3 = function (_p34) {
 	var _p35 = _p34;
-	return A4(
-		_elm_lang$core$List$map3,
-		F3(
-			function (a, b, c) {
-				return {ctor: '_Tuple3', _0: a, _1: b, _2: c};
-			}),
-		_p35._0,
-		_p35._1,
-		_p35._2);
+	return _p35._1;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$zip = function (_p36) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$first3 = function (_p36) {
 	var _p37 = _p36;
-	return A3(
-		_elm_lang$core$List$map2,
-		F2(
-			function (v0, v1) {
-				return {ctor: '_Tuple2', _0: v0, _1: v1};
-			}),
-		_p37._0,
-		_p37._1);
+	return _p37._0;
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$unzip4 = function (_p38) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$zip4 = function (_p38) {
 	var _p39 = _p38;
 	return A5(
 		_elm_lang$core$List$map4,
@@ -3403,7 +3398,7 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$unzip4 = function (_p38) {
 		_p39._2,
 		_p39._3);
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$unzip3 = function (_p40) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$zip3 = function (_p40) {
 	var _p41 = _p40;
 	return A4(
 		_elm_lang$core$List$map3,
@@ -3414,6 +3409,42 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$unzip3 = function (_p40) {
 		_p41._0,
 		_p41._1,
 		_p41._2);
+};
+var _danielnarey$elm_toolkit$Toolkit_Helpers$zip = function (_p42) {
+	var _p43 = _p42;
+	return A3(
+		_elm_lang$core$List$map2,
+		F2(
+			function (v0, v1) {
+				return {ctor: '_Tuple2', _0: v0, _1: v1};
+			}),
+		_p43._0,
+		_p43._1);
+};
+var _danielnarey$elm_toolkit$Toolkit_Helpers$unzip4 = function (_p44) {
+	var _p45 = _p44;
+	return A5(
+		_elm_lang$core$List$map4,
+		F4(
+			function (a, b, c, d) {
+				return {ctor: '_Tuple4', _0: a, _1: b, _2: c, _3: d};
+			}),
+		_p45._0,
+		_p45._1,
+		_p45._2,
+		_p45._3);
+};
+var _danielnarey$elm_toolkit$Toolkit_Helpers$unzip3 = function (_p46) {
+	var _p47 = _p46;
+	return A4(
+		_elm_lang$core$List$map3,
+		F3(
+			function (a, b, c) {
+				return {ctor: '_Tuple3', _0: a, _1: b, _2: c};
+			}),
+		_p47._0,
+		_p47._1,
+		_p47._2);
 };
 var _danielnarey$elm_toolkit$Toolkit_Helpers$getNth = F2(
 	function (n, list) {
@@ -3427,11 +3458,84 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$wrapList = function (a) {
 		_1: {ctor: '[]'}
 	};
 };
-var _danielnarey$elm_toolkit$Toolkit_Helpers$maybe4Tuple = function (tuple) {
-	var _p42 = tuple;
-	if (((((_p42.ctor === '_Tuple4') && (_p42._0.ctor === 'Just')) && (_p42._1.ctor === 'Just')) && (_p42._2.ctor === 'Just')) && (_p42._3.ctor === 'Just')) {
+var _danielnarey$elm_toolkit$Toolkit_Helpers$resultList = F2(
+	function (errorMsg, list) {
+		var _p48 = A2(_elm_lang$core$List$take, 1, list);
+		if (_p48.ctor === '::') {
+			if ((_p48._0.ctor === 'Ok') && (_p48._1.ctor === '[]')) {
+				return A2(
+					_elm_lang$core$Result$map,
+					F2(
+						function (x, y) {
+							return {ctor: '::', _0: x, _1: y};
+						})(_p48._0._0),
+					A2(
+						_danielnarey$elm_toolkit$Toolkit_Helpers$resultList,
+						errorMsg,
+						A2(_elm_lang$core$List$drop, 1, list)));
+			} else {
+				return _elm_lang$core$Result$Err(errorMsg);
+			}
+		} else {
+			return _elm_lang$core$Result$Ok(
+				{ctor: '[]'});
+		}
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$result4Tuple = F2(
+	function (error, tuple) {
+		var _p49 = tuple;
+		if (((((_p49.ctor === '_Tuple4') && (_p49._0.ctor === 'Ok')) && (_p49._1.ctor === 'Ok')) && (_p49._2.ctor === 'Ok')) && (_p49._3.ctor === 'Ok')) {
+			return _elm_lang$core$Result$Ok(
+				{ctor: '_Tuple4', _0: _p49._0._0, _1: _p49._1._0, _2: _p49._2._0, _3: _p49._3._0});
+		} else {
+			return _elm_lang$core$Result$Err(error);
+		}
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$result3Tuple = F2(
+	function (error, tuple) {
+		var _p50 = tuple;
+		if ((((_p50.ctor === '_Tuple3') && (_p50._0.ctor === 'Ok')) && (_p50._1.ctor === 'Ok')) && (_p50._2.ctor === 'Ok')) {
+			return _elm_lang$core$Result$Ok(
+				{ctor: '_Tuple3', _0: _p50._0._0, _1: _p50._1._0, _2: _p50._2._0});
+		} else {
+			return _elm_lang$core$Result$Err(error);
+		}
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$result2Tuple = F2(
+	function (error, tuple) {
+		var _p51 = tuple;
+		if (((_p51.ctor === '_Tuple2') && (_p51._0.ctor === 'Ok')) && (_p51._1.ctor === 'Ok')) {
+			return _elm_lang$core$Result$Ok(
+				{ctor: '_Tuple2', _0: _p51._0._0, _1: _p51._1._0});
+		} else {
+			return _elm_lang$core$Result$Err(error);
+		}
+	});
+var _danielnarey$elm_toolkit$Toolkit_Helpers$maybeList = function (list) {
+	var _p52 = A2(_elm_lang$core$List$take, 1, list);
+	if (_p52.ctor === '::') {
+		if ((_p52._0.ctor === 'Just') && (_p52._1.ctor === '[]')) {
+			return A2(
+				_elm_lang$core$Maybe$map,
+				F2(
+					function (x, y) {
+						return {ctor: '::', _0: x, _1: y};
+					})(_p52._0._0),
+				_danielnarey$elm_toolkit$Toolkit_Helpers$maybeList(
+					A2(_elm_lang$core$List$drop, 1, list)));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	} else {
 		return _elm_lang$core$Maybe$Just(
-			{ctor: '_Tuple4', _0: _p42._0._0, _1: _p42._1._0, _2: _p42._2._0, _3: _p42._3._0});
+			{ctor: '[]'});
+	}
+};
+var _danielnarey$elm_toolkit$Toolkit_Helpers$maybe4Tuple = function (tuple) {
+	var _p53 = tuple;
+	if (((((_p53.ctor === '_Tuple4') && (_p53._0.ctor === 'Just')) && (_p53._1.ctor === 'Just')) && (_p53._2.ctor === 'Just')) && (_p53._3.ctor === 'Just')) {
+		return _elm_lang$core$Maybe$Just(
+			{ctor: '_Tuple4', _0: _p53._0._0, _1: _p53._1._0, _2: _p53._2._0, _3: _p53._3._0});
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
@@ -3450,10 +3554,10 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$take4Tuple = function (list) {
 			list));
 };
 var _danielnarey$elm_toolkit$Toolkit_Helpers$maybe3Tuple = function (tuple) {
-	var _p43 = tuple;
-	if ((((_p43.ctor === '_Tuple3') && (_p43._0.ctor === 'Just')) && (_p43._1.ctor === 'Just')) && (_p43._2.ctor === 'Just')) {
+	var _p54 = tuple;
+	if ((((_p54.ctor === '_Tuple3') && (_p54._0.ctor === 'Just')) && (_p54._1.ctor === 'Just')) && (_p54._2.ctor === 'Just')) {
 		return _elm_lang$core$Maybe$Just(
-			{ctor: '_Tuple3', _0: _p43._0._0, _1: _p43._1._0, _2: _p43._2._0});
+			{ctor: '_Tuple3', _0: _p54._0._0, _1: _p54._1._0, _2: _p54._2._0});
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
@@ -3471,10 +3575,10 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$take3Tuple = function (list) {
 			list));
 };
 var _danielnarey$elm_toolkit$Toolkit_Helpers$maybe2Tuple = function (tuple) {
-	var _p44 = tuple;
-	if (((_p44.ctor === '_Tuple2') && (_p44._0.ctor === 'Just')) && (_p44._1.ctor === 'Just')) {
+	var _p55 = tuple;
+	if (((_p55.ctor === '_Tuple2') && (_p55._0.ctor === 'Just')) && (_p55._1.ctor === 'Just')) {
 		return _elm_lang$core$Maybe$Just(
-			{ctor: '_Tuple2', _0: _p44._0._0, _1: _p44._1._0});
+			{ctor: '_Tuple2', _0: _p55._0._0, _1: _p55._1._0});
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
@@ -3491,8 +3595,8 @@ var _danielnarey$elm_toolkit$Toolkit_Helpers$take2Tuple = function (list) {
 			list));
 };
 var _danielnarey$elm_toolkit$Toolkit_Helpers$toBool = function (boolString) {
-	var _p45 = _elm_lang$core$String$toLower(boolString);
-	switch (_p45) {
+	var _p56 = _elm_lang$core$String$toLower(boolString);
+	switch (_p56) {
 		case 'true':
 			return _elm_lang$core$Result$Ok(true);
 		case 'false':
@@ -6371,7 +6475,7 @@ function mapProperty(func, property)
 	return on(
 		property.realKey,
 		property.value.options,
-		A2(_elm_lang$core$Json$map, func, property.value.decoder)
+		A2(_elm_lang$core$Json_Decode$map, func, property.value.decoder)
 	);
 }
 
@@ -7969,7 +8073,8 @@ return {
 	staticProgram: staticProgram
 };
 
-}();var _elm_lang$virtual_dom$VirtualDom$programWithFlags = function (impl) {
+}();
+var _elm_lang$virtual_dom$VirtualDom$programWithFlags = function (impl) {
 	return A2(_elm_lang$virtual_dom$Native_VirtualDom.programWithFlags, _elm_lang$virtual_dom$VirtualDom_Debug$wrapWithFlags, impl);
 };
 var _elm_lang$virtual_dom$VirtualDom$program = function (impl) {
@@ -9717,9 +9822,9 @@ var _danielnarey$elm_html_tree$HtmlTree$renderNode = F2(
 				_p2._0,
 				_elm_lang$core$Json_Decode$succeed(_p2._1));
 		};
-		var styleAttribute = A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'], htmlElement.styles, _elm_lang$core$List$isEmpty) ? {ctor: '[]'} : _danielnarey$elm_toolkit$Toolkit_Helpers$wrapList(
+		var styleAttribute = _elm_lang$core$List$isEmpty(htmlElement.styles) ? {ctor: '[]'} : _danielnarey$elm_toolkit$Toolkit_Helpers$wrapList(
 			_elm_lang$html$Html_Attributes$style(htmlElement.styles));
-		var classAttribute = A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'], htmlElement.classes, _elm_lang$core$List$isEmpty) ? {ctor: '[]'} : _danielnarey$elm_toolkit$Toolkit_Helpers$wrapList(
+		var classAttribute = _elm_lang$core$List$isEmpty(htmlElement.classes) ? {ctor: '[]'} : _danielnarey$elm_toolkit$Toolkit_Helpers$wrapList(
 			_elm_lang$html$Html_Attributes$class(
 				A2(_elm_lang$core$String$join, ' ', htmlElement.classes)));
 		var attributes = _elm_lang$core$List$concat(
@@ -9774,10 +9879,7 @@ var _danielnarey$elm_html_tree$HtmlTree$assembleHtml = function (htmlTree) {
 						function (x, y) {
 							return A2(_elm_lang$core$Basics_ops['++'], x, y);
 						}),
-					A2(
-						_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-						_p6.text,
-						renderText(_p6.markdown)),
+					A2(renderText, _p6.markdown, _p6.text),
 					A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['.|>'], _p4._1, _danielnarey$elm_html_tree$HtmlTree$assembleHtml)));
 	}
 };
@@ -9821,11 +9923,7 @@ var _danielnarey$elm_html_tree$HtmlTree$appendChild = F2(
 				return A2(
 					_danielnarey$elm_html_tree$HtmlTree$Stem,
 					_p8._0,
-					{
-						ctor: '::',
-						_0: newChild,
-						_1: {ctor: '[]'}
-					});
+					_danielnarey$elm_toolkit$Toolkit_Helpers$wrapList(newChild));
 			case 'Stem':
 				return A2(
 					_danielnarey$elm_html_tree$HtmlTree$Stem,
@@ -9843,11 +9941,7 @@ var _danielnarey$elm_html_tree$HtmlTree$prependChild = F2(
 				return A2(
 					_danielnarey$elm_html_tree$HtmlTree$Stem,
 					_p9._0,
-					{
-						ctor: '::',
-						_0: newChild,
-						_1: {ctor: '[]'}
-					});
+					_danielnarey$elm_toolkit$Toolkit_Helpers$wrapList(newChild));
 			case 'Stem':
 				return A2(
 					_danielnarey$elm_html_tree$HtmlTree$Stem,
@@ -9898,9 +9992,7 @@ var _danielnarey$elm_html_tree$HtmlTree$modifyRoot = F2(
 		var _p10 = htmlTree;
 		switch (_p10.ctor) {
 			case 'Leaf':
-				return function (elem) {
-					return _danielnarey$elm_html_tree$HtmlTree$Leaf(elem);
-				}(
+				return _danielnarey$elm_html_tree$HtmlTree$Leaf(
 					updateFunction(_p10._0));
 			case 'Stem':
 				return function (elem) {
@@ -9928,9 +10020,7 @@ var _danielnarey$elm_html_tree$HtmlTree$appendText = F2(
 			return _elm_lang$core$Native_Utils.update(
 				htmlElement,
 				{
-					text: function (n) {
-						return _elm_lang$core$Maybe$Just(n);
-					}(
+					text: _elm_lang$core$Maybe$Just(
 						A2(
 							_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'],
 							A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['?='], htmlElement.text, ''),
@@ -9945,9 +10035,7 @@ var _danielnarey$elm_html_tree$HtmlTree$prependText = F2(
 			return _elm_lang$core$Native_Utils.update(
 				htmlElement,
 				{
-					text: function (n) {
-						return _elm_lang$core$Maybe$Just(n);
-					}(
+					text: _elm_lang$core$Maybe$Just(
 						A2(
 							_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'],
 							newText,
@@ -10161,12 +10249,9 @@ var _danielnarey$elm_form_capture$FormCapture$generateFormDecoder = function (el
 		function (elementList, decoderList) {
 			generateDecoderList:
 			while (true) {
-				var _p0 = A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'], elementList, _elm_lang$core$List$head);
+				var _p0 = _elm_lang$core$List$head(elementList);
 				if (_p0.ctor === 'Just') {
-					var _v1 = A2(
-						_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-						elementList,
-						_elm_lang$core$List$drop(1)),
+					var _v1 = A2(_elm_lang$core$List$drop, 1, elementList),
 						_v2 = A3(
 						_elm_lang$core$Json_Decode$map2,
 						F2(
@@ -10221,7 +10306,7 @@ var _danielnarey$elm_form_capture$FormCapture$formToHtmlTree = function (form) {
 	};
 	return A2(
 		_danielnarey$elm_html_tree$HtmlTree$withObserver,
-		A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'], form, captureFormInput),
+		captureFormInput(form),
 		A2(
 			_danielnarey$elm_html_tree$HtmlTree$container,
 			'form',
@@ -10316,73 +10401,58 @@ var _danielnarey$elm_form_capture$FormCapture_Readers$toJson = function (formInp
 				function (v) {
 					return A2(
 						_danielnarey$elm_toolkit$Toolkit_Operators_ops['!='],
-						A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'], v, _danielnarey$elm_form_capture$FormCapture_Readers$toJsonValue),
+						_danielnarey$elm_form_capture$FormCapture_Readers$toJsonValue(v),
 						_elm_lang$core$Json_Encode$null);
 				})));
 };
 var _danielnarey$elm_form_capture$FormCapture_Readers$readCustomAt = F2(
 	function (key, formInput) {
-		var _p1 = A2(
-			_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-			formInput,
-			_elm_lang$core$Dict$get(key));
+		var _p1 = A2(_elm_lang$core$Dict$get, key, formInput);
 		if (_p1.ctor === 'Just') {
 			return _danielnarey$elm_input_validation$InputValidation$readCustomInput(_p1._0);
 		} else {
 			return _elm_lang$core$Result$Err(
-				A2(_elm_lang$core$Basics_ops['++'], 'Submitted form does not contain a value for ', key));
+				A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'], 'Submitted form does not contain a value for ', key));
 		}
 	});
 var _danielnarey$elm_form_capture$FormCapture_Readers$readBoolAt = F2(
 	function (key, formInput) {
-		var _p2 = A2(
-			_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-			formInput,
-			_elm_lang$core$Dict$get(key));
+		var _p2 = A2(_elm_lang$core$Dict$get, key, formInput);
 		if (_p2.ctor === 'Just') {
 			return _danielnarey$elm_input_validation$InputValidation$readBoolInput(_p2._0);
 		} else {
 			return _elm_lang$core$Result$Err(
-				A2(_elm_lang$core$Basics_ops['++'], 'Submitted form does not contain a value for ', key));
+				A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'], 'Submitted form does not contain a value for ', key));
 		}
 	});
 var _danielnarey$elm_form_capture$FormCapture_Readers$readFloatAt = F2(
 	function (key, formInput) {
-		var _p3 = A2(
-			_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-			formInput,
-			_elm_lang$core$Dict$get(key));
+		var _p3 = A2(_elm_lang$core$Dict$get, key, formInput);
 		if (_p3.ctor === 'Just') {
 			return _danielnarey$elm_input_validation$InputValidation$readFloatInput(_p3._0);
 		} else {
 			return _elm_lang$core$Result$Err(
-				A2(_elm_lang$core$Basics_ops['++'], 'Submitted form does not contain a value for ', key));
+				A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'], 'Submitted form does not contain a value for ', key));
 		}
 	});
 var _danielnarey$elm_form_capture$FormCapture_Readers$readIntAt = F2(
 	function (key, formInput) {
-		var _p4 = A2(
-			_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-			formInput,
-			_elm_lang$core$Dict$get(key));
+		var _p4 = A2(_elm_lang$core$Dict$get, key, formInput);
 		if (_p4.ctor === 'Just') {
 			return _danielnarey$elm_input_validation$InputValidation$readIntInput(_p4._0);
 		} else {
 			return _elm_lang$core$Result$Err(
-				A2(_elm_lang$core$Basics_ops['++'], 'Submitted form does not contain a value for ', key));
+				A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'], 'Submitted form does not contain a value for ', key));
 		}
 	});
 var _danielnarey$elm_form_capture$FormCapture_Readers$readStringAt = F2(
 	function (key, formInput) {
-		var _p5 = A2(
-			_danielnarey$elm_toolkit$Toolkit_Operators_ops['||>'],
-			formInput,
-			_elm_lang$core$Dict$get(key));
+		var _p5 = A2(_elm_lang$core$Dict$get, key, formInput);
 		if (_p5.ctor === 'Just') {
 			return _danielnarey$elm_input_validation$InputValidation$readStringInput(_p5._0);
 		} else {
 			return _elm_lang$core$Result$Err(
-				A2(_elm_lang$core$Basics_ops['++'], 'Submitted form does not contain a value for ', key));
+				A2(_danielnarey$elm_toolkit$Toolkit_Operators_ops['|++'], 'Submitted form does not contain a value for ', key));
 		}
 	});
 var _danielnarey$elm_form_capture$Main$userInput = {name: _elm_lang$core$Maybe$Nothing, age: _elm_lang$core$Maybe$Nothing, pi: _elm_lang$core$Maybe$Nothing, answer: _elm_lang$core$Maybe$Nothing, chars: _elm_lang$core$Maybe$Nothing};

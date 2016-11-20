@@ -29,13 +29,15 @@ fails, or if the value is a type other than StringInput.
 -}
 readStringAt : String -> FormInput a -> Result String String
 readStringAt key formInput =
-  case formInput ||> Dict.get key of
+  case formInput |> Dict.get key of
     Just typedInput ->
       typedInput
         |> Validate.readStringInput
 
     Nothing ->
-      Err ("Submitted form does not contain a value for " ++ key)
+      "Submitted form does not contain a value for "
+        |++ key
+        |> Err
 
 
 {-| Given an `id` string and a `FormInput` dictionary, attempt to look up the
@@ -47,13 +49,15 @@ fails, or if the value is a type other than IntInput.
 -}
 readIntAt : String -> FormInput a -> Result String Int
 readIntAt key formInput =
-  case formInput ||> Dict.get key of
+  case formInput |> Dict.get key of
     Just typedInput ->
       typedInput
         |> Validate.readIntInput
 
     Nothing ->
-      Err ("Submitted form does not contain a value for " ++ key)
+      "Submitted form does not contain a value for "
+        |++ key
+        |> Err
 
 
 {-| Given an `id` string and a `FormInput` dictionary, attempt to look up the
@@ -65,13 +69,15 @@ fails, or if the value is a type other than FloatInput.
 -}
 readFloatAt : String -> FormInput a -> Result String Float
 readFloatAt key formInput =
-  case formInput ||> Dict.get key of
+  case formInput |> Dict.get key of
     Just typedInput ->
       typedInput
         |> Validate.readFloatInput
 
     Nothing ->
-      Err ("Submitted form does not contain a value for " ++ key)
+      "Submitted form does not contain a value for "
+        |++ key
+        |> Err
 
 
 {-| Given an `id` string and a `FormInput` dictionary, attempt to look up the
@@ -83,13 +89,15 @@ fails, or if the value is a type other than BoolInput.
 -}
 readBoolAt : String -> FormInput a -> Result String Bool
 readBoolAt key formInput =
-  case formInput ||> Dict.get key of
+  case formInput |> Dict.get key of
     Just typedInput ->
       typedInput
         |> Validate.readBoolInput
 
     Nothing ->
-      Err ("Submitted form does not contain a value for " ++ key)
+      "Submitted form does not contain a value for "
+        |++ key
+        |> Err
 
 
 {-| Given an `id` string and a `FormInput` dictionary, attempt to look up the
@@ -102,13 +110,15 @@ fails, or if the value is a type other than CustomInput.
 -}
 readCustomAt : String -> FormInput a -> Result String a
 readCustomAt key formInput =
-  case formInput ||> Dict.get key of
+  case formInput |> Dict.get key of
     Just typedInput ->
       typedInput
         |> Validate.readCustomInput
 
     Nothing ->
-      Err ("Submitted form does not contain a value for " ++ key)
+      "Submitted form does not contain a value for "
+        |++ key
+        |> Err
 
 
 -- CONVERTING FORM INPUT TO JSON
@@ -131,7 +141,7 @@ toJson : FormInput a -> Json.Value
 toJson formInput =
   formInput
     |> Dict.toList
-    .|> Tuple.mapSecond (\v -> v ||> toJsonValue != Json.Encode.null)
+   .|> Tuple.mapSecond (\v -> v |> toJsonValue != Json.Encode.null)
     |> Json.Encode.object
 
 
@@ -144,25 +154,27 @@ toJsonValue typedInput =
     StringInput jsonValue ->
       typedInput
         |> Validate.readStringInput
-        !|> Json.Encode.string
+       !|> Json.Encode.string
 
     IntInput jsonValue ->
       typedInput
         |> Validate.readIntInput
-        !|> Json.Encode.int
+       !|> Json.Encode.int
 
     FloatInput jsonValue ->
       typedInput
         |> Validate.readFloatInput
-        !|> Json.Encode.float
+       !|> Json.Encode.float
 
     BoolInput expression jsonValue ->
       typedInput
         |> Validate.readBoolInput
-        !|> Json.Encode.bool
+       !|> Json.Encode.bool
 
     CustomInput decoder jsonValue ->
-      Ok jsonValue
+      jsonValue
+        |> Ok
 
     Fail ->
-      Err ("Something went wrong: Attempting to convert `Fail` to JSON")
+      "Something went wrong: Attempting to convert `Fail` to JSON"
+        |> Err

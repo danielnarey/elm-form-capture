@@ -275,10 +275,10 @@ formToHtmlTree form =
 
   in
     form.elements
-      .|> elementToTree
+     .|> elementToTree
       |:: submitButton
       |> HtmlTree.container "form"
-      |> HtmlTree.withObserver (form ||> captureFormInput)
+      |> HtmlTree.withObserver (form |> captureFormInput)
 
 
 {-| Given a list of `FormElement` records, this function generates a decoder
@@ -290,12 +290,12 @@ generateFormDecoder : List (FormElement msg a) -> Decoder (FormInput a)
 generateFormDecoder elementList =
   let
     generateDecoderList elementList decoderList =
-      case elementList ||> List.head of
+      case elementList |> List.head of
         Just nextElement ->
           nextElement
             |> constructElementDecoder
             |> Json.map2 (|::) decoderList
-            |> generateDecoderList (elementList ||> List.drop 1)
+            |> generateDecoderList (elementList |> List.drop 1)
 
         Nothing ->
           decoderList
