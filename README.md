@@ -15,5 +15,5 @@ __Dependencies:__
 - [elm-lang/core/5.0.0](http://package.elm-lang.org/packages/elm-lang/core/5.0.0)
 - [elm-lang/html/2.0.0](http://package.elm-lang.org/packages/elm-lang/html/2.0.0)
 - [danielnarey/elm-toolkit/4.0.0](http://package.elm-lang.org/packages/danielnarey/elm-toolkit/4.0.0)
-- [danielnarey/elm-html-tree/1.0.3](http://package.elm-lang.org/packages/danielnarey/elm-html-tree/1.0.3)
+- [danielnarey/elm-html-tree/2.0.0](http://package.elm-lang.org/packages/danielnarey/elm-html-tree/2.0.0)
 - [danielnarey/elm-input-validation/1.0.2](http://package.elm-lang.org/packages/danielnarey/elm-input-validation/1.0.2)
