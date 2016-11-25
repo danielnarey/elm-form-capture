@@ -1,5 +1,5 @@
 {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "summary": "Capture form input as a dictionary keyed by component id",
     "repository": "https://github.com/danielnarey/elm-form-capture.git",
     "license": "BSD2",
@@ -12,7 +12,7 @@
         "FormCapture.Readers"
     ],
     "dependencies": {
-        "danielnarey/elm-html-tree": "1.0.3 <= v < 2.0.0",
+        "danielnarey/elm-html-tree": "2.0.0 <= v < 3.0.0",
         "danielnarey/elm-input-validation": "1.0.2 <= v < 2.0.0",
         "danielnarey/elm-toolkit": "4.0.0 <= v < 5.0.0",
         "elm-lang/core": "5.0.0 <= v < 6.0.0",
