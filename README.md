@@ -12,8 +12,7 @@ standard `Html` or the alternative
 syntax.
 
 __Dependencies:__
-- [elm-lang/core/5.0.0](http://package.elm-lang.org/packages/elm-lang/core/5.0.0)
+- [elm-lang/core/5.1.1](http://package.elm-lang.org/packages/elm-lang/core/5.1.1)
 - [elm-lang/html/2.0.0](http://package.elm-lang.org/packages/elm-lang/html/2.0.0)
-- [danielnarey/elm-toolkit/4.0.0](http://package.elm-lang.org/packages/danielnarey/elm-toolkit/4.0.0)
-- [danielnarey/elm-html-tree/2.0.0](http://package.elm-lang.org/packages/danielnarey/elm-html-tree/2.0.0)
+- [danielnarey/elm-html-tree/3.0.1](http://package.elm-lang.org/packages/danielnarey/elm-html-tree/3.0.1)
 - [danielnarey/elm-input-validation/1.0.2](http://package.elm-lang.org/packages/danielnarey/elm-input-validation/1.0.2)

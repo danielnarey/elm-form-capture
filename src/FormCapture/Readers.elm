@@ -10,7 +10,6 @@ module FormCapture.Readers exposing
 @docs toJson
 -}
 
-import Toolkit.Operators exposing (..)
 import FormCapture exposing (FormInput)
 import InputValidation as Validate exposing (TypedInput(..))
 import Json.Decode as Json
@@ -35,8 +34,7 @@ readStringAt key formInput =
         |> Validate.readStringInput
 
     Nothing ->
-      "Submitted form does not contain a value for "
-        |++ key
+      "Submitted form does not contain a value for " ++ key
         |> Err
 
 
@@ -55,8 +53,7 @@ readIntAt key formInput =
         |> Validate.readIntInput
 
     Nothing ->
-      "Submitted form does not contain a value for "
-        |++ key
+      "Submitted form does not contain a value for " ++ key
         |> Err
 
 
@@ -75,8 +72,7 @@ readFloatAt key formInput =
         |> Validate.readFloatInput
 
     Nothing ->
-      "Submitted form does not contain a value for "
-        |++ key
+      "Submitted form does not contain a value for " ++ key
         |> Err
 
 
@@ -95,8 +91,7 @@ readBoolAt key formInput =
         |> Validate.readBoolInput
 
     Nothing ->
-      "Submitted form does not contain a value for "
-        |++ key
+      "Submitted form does not contain a value for " ++ key
         |> Err
 
 
@@ -116,8 +111,7 @@ readCustomAt key formInput =
         |> Validate.readCustomInput
 
     Nothing ->
-      "Submitted form does not contain a value for "
-        |++ key
+      "Submitted form does not contain a value for " ++ key
         |> Err
 
 
@@ -141,7 +135,8 @@ toJson : FormInput a -> Json.Value
 toJson formInput =
   formInput
     |> Dict.toList
-   .|> Tuple.mapSecond (\v -> v |> toJsonValue != Json.Encode.null)
+    |> List.map
+      ( Tuple.mapSecond (toJsonValue >> Result.withDefault Json.Encode.null) )
     |> Json.Encode.object
 
 
@@ -154,22 +149,22 @@ toJsonValue typedInput =
     StringInput jsonValue ->
       typedInput
         |> Validate.readStringInput
-       !|> Json.Encode.string
+        |> Result.map Json.Encode.string
 
     IntInput jsonValue ->
       typedInput
         |> Validate.readIntInput
-       !|> Json.Encode.int
+        |> Result.map Json.Encode.int
 
     FloatInput jsonValue ->
       typedInput
         |> Validate.readFloatInput
-       !|> Json.Encode.float
+        |> Result.map Json.Encode.float
 
     BoolInput expression jsonValue ->
       typedInput
         |> Validate.readBoolInput
-       !|> Json.Encode.bool
+        |> Result.map Json.Encode.bool
 
     CustomInput decoder jsonValue ->
       jsonValue

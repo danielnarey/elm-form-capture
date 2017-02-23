@@ -38,8 +38,6 @@ See
 for a full working example.
 -}
 
-import Toolkit.Operators exposing (..)
-import Toolkit.Helpers as Helpers
 import InputValidation exposing (TypedInput(..))
 import HtmlTree exposing (HtmlTree)
 import Html exposing (Html)
@@ -205,8 +203,7 @@ addFormElement : FormElement msg a -> Form msg a -> Form msg a
 addFormElement newElement form =
   { form
   | elements =
-      form.elements
-        |:: newElement
+      form.elements ++ [ newElement ]
   }
 
 
@@ -237,7 +234,7 @@ package.
 
     myForm
       |> toHtmlTree
-      |> (\n -> [n])
+      |> List.singleton
       |> container "div"
 
 A submit button for the form will be added as the last form element when it is
@@ -275,8 +272,8 @@ formToHtmlTree form =
 
   in
     form.elements
-     .|> elementToTree
-      |:: submitButton
+      |> List.map elementToTree
+      |> flip List.append [ submitButton ]
       |> HtmlTree.container "form"
       |> HtmlTree.withObserver (form |> captureFormInput)
 
@@ -294,7 +291,7 @@ generateFormDecoder elementList =
         Just nextElement ->
           nextElement
             |> constructElementDecoder
-            |> Json.map2 (|::) decoderList
+            |> Json.map2 (\list a -> list ++ [ a ]) decoderList
             |> generateDecoderList (elementList |> List.drop 1)
 
         Nothing ->
