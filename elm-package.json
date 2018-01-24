@@ -1,6 +1,6 @@
 {
-    "version": "1.0.4",
-    "summary": "Capture form input as a dictionary keyed by component id",
+    "version": "1.0.5",
+    "summary": "Deprecated in favor of danielnarey/elm-semantic-dom",
     "repository": "https://github.com/danielnarey/elm-form-capture.git",
     "license": "BSD2",
     "source-directories": [
